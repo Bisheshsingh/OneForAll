@@ -32,6 +32,6 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-jar {
+bootJar {
 	destinationDirectory.set(file("$rootDir/target"))
 }
