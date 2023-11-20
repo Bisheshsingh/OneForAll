@@ -23,7 +23,10 @@ jobs:
              chmod 600 $HOME/.ssh/id_rsa
              eval "$(ssh-agent -s)"
              ssh-add $HOME/.ssh/id_rsa
+             ssh-keygen -y -f $HOME/.ssh/id_rsa
 
-      - name: Display public key
+      - name: Upload To Prod
         run: |
-              ssh-keygen -y -f $HOME/.ssh/id_rsa
+             git remote add originProd git@ssh.osc-fr1.scalingo.com:database-provider.git
+             git push -u originProd master 
+              
