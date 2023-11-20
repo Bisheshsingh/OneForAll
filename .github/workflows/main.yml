@@ -17,7 +17,13 @@ jobs:
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
 
       - name: Set up SSH
-        run: mkdir -p ~/.ssh ;
-             echo "${{ secrets.SSH_PRIVATE_KEY }}" | tee ~/.ssh/id_rsa ;
-             ssh-keygen -y -f  ~/.ssh/id_rsa
-             echo  ~/.ssh/id_rsa.pub
+        id: ssh-setup
+        run: |
+             echo "${{ secrets.YOUR_SSH_KEY_SECRET }}" > ~/.ssh/id_rsa
+             chmod 600 ~/.ssh/id_rsa
+             eval "$(ssh-agent -s)"
+             ssh-add ~/.ssh/id_rsa
+
+      - name: Display public key
+        run: |
+              ssh-keygen -y -f ~/.ssh/id_rsa
