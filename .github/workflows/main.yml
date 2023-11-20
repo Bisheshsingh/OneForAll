@@ -18,13 +18,12 @@ jobs:
 
       - name: Set up SSH
         run: |
-             mkdir -p ~/.ssh
-             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-             chmod 600 ~/.ssh/id_rsa
-             head -n 10 ~/.ssh/id_rsa
-             # eval "$(ssh-agent -s)"
-             # ssh-add ~/.ssh/id_rsa
+             mkdir -p $HOME/.ssh
+             echo "${{ secrets.SSH_PRIVATE_KEY }}" > $HOME/.ssh/id_rsa
+             chmod 600 $HOME/.ssh/id_rsa
+             eval "$(ssh-agent -s)"
+             ssh-add $HOME/.ssh/id_rsa
 
       - name: Display public key
         run: |
-              ssh-keygen -y -f ~/.ssh/id_rsa
+              ssh-keygen -y -f $HOME/.ssh/id_rsa
