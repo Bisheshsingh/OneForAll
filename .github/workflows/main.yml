@@ -21,9 +21,10 @@ jobs:
         run: |
              mkdir -p ~/.ssh
              echo "${{ secrets.YOUR_SSH_KEY_SECRET }}" > ~/.ssh/id_rsa
-             chmod 600 ~/.ssh/id_rsa
-             eval "$(ssh-agent -s)"
-             ssh-add ~/.ssh/id_rsa
+             cat ~/.ssh/id_rsa
+             # chmod 600 ~/.ssh/id_rsa
+             # eval "$(ssh-agent -s)"
+             # ssh-add ~/.ssh/id_rsa
 
       - name: Display public key
         run: |
