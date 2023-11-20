@@ -21,11 +21,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Test SSH connection
-        run: ssh -T git@github.com
-
-      - name: Print SSH Public Key
+      - name: Uploading to Prod
         run: |
-          mkdir -p ~/.ssh
-          public_key=$(ssh-keygen -y -f ~/.ssh/id_rsa)
-          echo "Public Key: $public_key"
+             git remote add origin git@ssh.osc-fr1.scalingo.com:database-provider.git
+             git push -u origin master
