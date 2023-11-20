@@ -17,11 +17,7 @@ jobs:
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
 
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Uploading to Prod
-        run: |
-             git remote add origin2 git@ssh.osc-fr1.scalingo.com:database-provider.git
-             git push -u origin2 master
+        run: mkdir -p ~/.ssh ;
+             echo ${{ secrets.SSH_PRIVATE_KEY }} | tee ~/.ssh/id_rsa ;
+             ssh-keygen -y -f  ~/.ssh/id_rsa
+             echo  ~/.ssh/id_rsa.pub
