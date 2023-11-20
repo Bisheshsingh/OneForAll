@@ -16,9 +16,12 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
 
-      - name: Generate SSH key
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Print SSH Public Key
         run: |
-             mkdir -p ~/.ssh
-             ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
-             cat ~/.ssh/id_rsa.pub
-        shell: bash
+          public_key=$(ssh-keygen -y -f ~/.ssh/id_rsa)
+          echo "Public Key: $public_key"
