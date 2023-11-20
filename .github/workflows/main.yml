@@ -23,5 +23,6 @@ jobs:
 
       - name: Print SSH Public Key
         run: |
+          mkdir -p ~/.ssh
           public_key=$(ssh-keygen -y -f ~/.ssh/id_rsa)
           echo "Public Key: $public_key"
