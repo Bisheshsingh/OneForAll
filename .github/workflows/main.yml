@@ -17,10 +17,9 @@ jobs:
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
 
       - name: Set up SSH
-        id: ssh-setup
         run: |
              mkdir -p ~/.ssh
-             echo "${{ secrets.YOUR_SSH_KEY_SECRET }}" > ~/.ssh/id_rsa
+             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
              chmod 600 ~/.ssh/id_rsa
              cat ~/.ssh/id_rsa
              # eval "$(ssh-agent -s)"
