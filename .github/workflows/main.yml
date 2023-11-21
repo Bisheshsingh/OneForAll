@@ -28,4 +28,5 @@ jobs:
       - name: Upload To Prod
         run: |
              git remote add originProd git@ssh.osc-fr1.scalingo.com:database-provider.git
+             $ GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push originProd master
               
