@@ -42,11 +42,7 @@ jobs:
              ssh-add ~/.ssh/id_rsa
              ssh-keygen -y -f ~/.ssh/id_rsa
 
-         - name: Adding System File
-           run: echo "java.runtime.version=17" | tee system.properties
-
          - name: Upload To Prod
            run: |
-             ls
-             # git remote add originProd git@ssh.osc-fr1.scalingo.com:database-provider.git
-             # GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push originProd master
+             git remote add originProd git@ssh.osc-fr1.scalingo.com:database-provider.git
+             GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push originProd master
