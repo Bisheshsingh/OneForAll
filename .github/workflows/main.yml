@@ -4,6 +4,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GIT_DEPTH: 0
     steps:
       - uses: actions/checkout@v3
     
